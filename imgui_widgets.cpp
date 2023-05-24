@@ -7005,7 +7005,7 @@ void ImGui::DebugNodeTypingSelectState(ImGuiTypingSelectState* data)
 // - MultiSelectItemFooter() [Internal]
 //-------------------------------------------------------------------------
 
-static void DebugLogMultiSelectRequests(const ImGuiMultiSelectData* data)
+static void DebugLogMultiSelectRequests(const ImGuiMultiSelectIO* data)
 {
     ImGuiContext& g = *GImGui;
     if (data->RequestClear)     IMGUI_DEBUG_LOG_SELECTION("EndMultiSelect: RequestClear\n");
@@ -7013,7 +7013,7 @@ static void DebugLogMultiSelectRequests(const ImGuiMultiSelectData* data)
     if (data->RequestSetRange)  IMGUI_DEBUG_LOG_SELECTION("EndMultiSelect: RequestSetRange %p..%p = %d (dir %+d)\n", data->RangeSrc, data->RangeDst, data->RangeValue, data->RangeDirection);
 }
 
-ImGuiMultiSelectData* ImGui::BeginMultiSelect(ImGuiMultiSelectFlags flags, void* range_ref, bool range_ref_is_selected)
+ImGuiMultiSelectIO* ImGui::BeginMultiSelect(ImGuiMultiSelectFlags flags, void* range_ref, bool range_ref_is_selected)
 {
     ImGuiContext& g = *GImGui;
     ImGuiWindow* window = g.CurrentWindow;
@@ -7066,7 +7066,7 @@ ImGuiMultiSelectData* ImGui::BeginMultiSelect(ImGuiMultiSelectFlags flags, void*
     return &ms->In;
 }
 
-ImGuiMultiSelectData* ImGui::EndMultiSelect()
+ImGuiMultiSelectIO* ImGui::EndMultiSelect()
 {
     ImGuiContext& g = *GImGui;
     ImGuiMultiSelectTempData* ms = g.CurrentMultiSelect;
