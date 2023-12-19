@@ -2909,7 +2909,7 @@ struct ExampleDualListBox
                 if (child_visible)
                 {
                     ImGuiMultiSelectFlags flags = ImGuiMultiSelectFlags_None;
-                    ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                    ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection.Size);
                     ApplySelectionRequests(ms_io, side);
 
                     for (int item_n = 0; item_n < items.Size; item_n++)
@@ -3040,7 +3040,7 @@ static void ShowDemoWindowMultiSelect()
             if (ImGui::BeginChild("##Basket", ImVec2(-FLT_MIN, ImGui::GetFontSize() * 20), ImGuiChildFlags_FrameStyle | ImGuiChildFlags_ResizeY))
             {
                 ImGuiMultiSelectFlags flags = ImGuiMultiSelectFlags_ClearOnEscape | ImGuiMultiSelectFlags_BoxSelect;
-                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection.Size);
                 selection.ApplyRequests(ms_io, ITEMS_COUNT);
 
                 for (int n = 0; n < ITEMS_COUNT; n++)
@@ -3074,7 +3074,7 @@ static void ShowDemoWindowMultiSelect()
             if (ImGui::BeginChild("##Basket", ImVec2(-FLT_MIN, ImGui::GetFontSize() * 20), ImGuiChildFlags_FrameStyle | ImGuiChildFlags_ResizeY))
             {
                 ImGuiMultiSelectFlags flags = ImGuiMultiSelectFlags_ClearOnEscape | ImGuiMultiSelectFlags_BoxSelect;
-                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection.Size);
                 selection.ApplyRequests(ms_io, ITEMS_COUNT);
 
                 ImGuiListClipper clipper;
@@ -3138,7 +3138,7 @@ static void ShowDemoWindowMultiSelect()
             if (ImGui::BeginChild("##Basket", ImVec2(-FLT_MIN, ImGui::GetFontSize() * 20), ImGuiChildFlags_FrameStyle | ImGuiChildFlags_ResizeY))
             {
                 ImGuiMultiSelectFlags flags = ImGuiMultiSelectFlags_ClearOnEscape | ImGuiMultiSelectFlags_BoxSelect;
-                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection.Size);
                 selection.ApplyRequests(ms_io, items.Size);
 
                 const bool want_delete = ImGui::Shortcut(ImGuiKey_Delete, ImGuiInputFlags_Repeat) && (selection.Size > 0);
@@ -3254,7 +3254,7 @@ static void ShowDemoWindowMultiSelect()
             {
                 ImGui::PushID(selection_scope_n);
                 ImGuiSelectionBasicStorage* selection = &selections_data[selection_scope_n];
-                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection->Size);
                 selection->ApplyRequests(ms_io, ITEMS_COUNT);
 
                 ImGui::SeparatorText("Selection scope");
@@ -3353,7 +3353,7 @@ static void ShowDemoWindowMultiSelect()
                 if (widget_type == WidgetType_TreeNode)
                     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(ImGui::GetStyle().ItemSpacing.x, 0.0f));
 
-                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags);
+                ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(flags, selection.Size);
                 selection.ApplyRequests(ms_io, items.Size);
 
                 const bool want_delete = (ImGui::Shortcut(ImGuiKey_Delete, ImGuiInputFlags_Repeat) && (selection.Size > 0)) || request_deletion_from_menu;
@@ -9698,7 +9698,7 @@ struct ExampleAssetsBrowser
                 ms_flags |= ImGuiMultiSelectFlags_SelectOnClickRelease; // To allow dragging an unselected item without altering selection.
             if (AllowBoxSelect)
                 ms_flags |= ImGuiMultiSelectFlags_BoxSelect2d; // Enable box-select in 2D mode.
-            ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(ms_flags);
+            ImGuiMultiSelectIO* ms_io = ImGui::BeginMultiSelect(ms_flags, Selection.Size);
 
             // Use custom selection adapter: store ID in selection (recommended)
             Selection.AdapterData = this;
