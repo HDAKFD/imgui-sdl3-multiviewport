@@ -3191,6 +3191,7 @@ static void ShowDemoWindowMultiSelect()
             ImGui::BulletText("Shift+Click to check multiple boxes.");
             ImGui::BulletText("Shift+Keyboard to copy current value to other boxes.");
 
+            // If you have an array of checkboxes, you may want to use NoAutoSelect + NoAutoClear and the ImGuiSelectionExternalStorage helper.
             static bool values[20] = {};
             static ImGuiMultiSelectFlags flags = ImGuiMultiSelectFlags_NoAutoSelect | ImGuiMultiSelectFlags_NoAutoClear | ImGuiMultiSelectFlags_ClearOnEscape;
             ImGui::CheckboxFlags("ImGuiMultiSelectFlags_NoAutoSelect", &flags, ImGuiMultiSelectFlags_NoAutoSelect);
